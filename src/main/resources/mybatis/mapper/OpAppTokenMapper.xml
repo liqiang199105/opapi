@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.litb.opapi.mybatis.mapper.OpAppTokenMapper">
+			
+	<resultMap type="OpAppToken" id="OpAppToken">
+        <id property="tokenId" column="token_id" />
+        <result property="appName" column="app_name"/>
+        <result property="appUserKey" column="app_user_key"/>
+        <result property="appToken" column="app_token"/>
+        <result property="appSecret" column="app_secret"/>
+        <result property="createDate" column="create_date"/>
+        <result property="lastModified" column="last_modified"/>
+    </resultMap>
+	
+	<select id="findByExample" resultMap="OpAppToken">
+		SELECT * from op_app_token WHERE 1>0 		
+		<if test=" OpAppToken.appName != null"> 
+			AND app_name = #{OpAppToken.appName}
+		</if>
+		<if test=" OpAppToken.appUserKey != null"> 
+			AND app_user_key = #{OpAppToken.appUserKey}
+		</if>
+		<if test=" OpAppToken.appToken != null"> 
+			AND app_token = #{OpAppToken.appToken}
+		</if>		
+	</select>
+	
+</mapper>

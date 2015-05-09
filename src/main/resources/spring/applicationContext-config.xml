@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:cache="http://www.springframework.org/schema/cache" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd 
+       http://www.springframework.org/schema/cache   http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <context:annotation-config />
+    
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>file:${user.home}/opapi/conf/jdbc.properties</value>
+                <value>file:${user.home}/opapi/conf/opapi.properties</value>
+            </list>
+        </property>
+    </bean>
+    
+    <bean class="com.litb.opapi.util.MemCachedManager" >  
+        <property name="addresses"  value="${memcached.addresses}"/>
+        <property name="enabled"  value="${memcached.enabled}"/>
+    </bean>
+
+	<!-- 启用缓存注解功能，这个是必须的，否则注解不会生效 -->  
+	<cache:annotation-driven cache-manager="cacheManager"/>
+	<!-- 配置eh缓存管理器 默认使用配置文件classpath:ehcache.xml -->
+	<bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean" />
+	<!-- 配置一个简单的缓存工厂bean对象 -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="cacheManagerFactory" />
+	</bean>
+	     
+    <bean id="factHessian" class="com.caucho.hessian.client.HessianProxyFactory">
+        <property name="chunkedPost" value="false" />
+        <property name="readTimeout" value="180000" /> <!-- 3mins -->
+    </bean>
+    
+     <!-- 配置RestTemplate -->
+     <!--Http client Factory-->  
+    <bean id="httpClientFactory" class="org.springframework.http.client.SimpleClientHttpRequestFactory">  
+        <property name="connectTimeout"  value="30000"/>
+        <property name="readTimeout"  value="30000"/>
+    </bean>  
+    
+    <!--RestTemplate-->  
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">  
+        <constructor-arg ref="httpClientFactory"/>  
+    </bean>
+    	
+
+</beans>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ehcache.xsd">
+
+    <!--
+    Sets the path to the directory where cache files are created.
+
+    If the path is a Java System Property it is replaced by its value in the
+    running VM.
+
+    The following properties are translated:
+    * user.home - User's home directory
+    * user.dir - User's current working directory
+    * java.io.tmpdir - Default temp file path
+
+    Subdirectories can be specified below the property e.g. java.io.tmpdir/one
+    -->
+    <diskStore path="java.io.tmpdir"/>
+    
+           
+    <cache name="TokenCache"
+           maxElementsInMemory="10000"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="3600"
+           eternal="false"
+           statistics="true"
+           overflowToDisk="false"/>
+           
+    <cache name="SecretCache"
+           maxElementsInMemory="10000"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="3600"
+           eternal="false"
+           statistics="true"
+           overflowToDisk="false"/>
+           
+           
+</ehcache>

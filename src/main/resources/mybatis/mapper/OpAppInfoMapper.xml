@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.litb.opapi.mybatis.mapper.OpAppInfoMapper">
+			
+	<resultMap type="OpAppInfo" id="opAppInfo">
+        <id property="appId" column="app_id" />
+        <result property="appName" column="app_name"/>
+        <result property="appDescription" column="app_description"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+    
+	<select id="getAll" resultMap="opAppInfo">
+		select * from op_app_info;
+	</select>
+	
+	
+</mapper>

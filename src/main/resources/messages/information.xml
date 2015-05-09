@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="welcome.title">兰亭集势供应商门户系统欢迎您</entry>
+    <entry key="menu.level1.transaction">交易管理</entry>
+    <entry key="menu.level1.authorization">权限管理</entry>
+    <entry key="menu.level2.authorization">权限管理</entry>
+    <entry key="menu.level2.user">帐号管理</entry>
+    <entry key="menu.level2.role">角色管理</entry>
+    <entry key="menu.level2.beConfirmed">待确认的采购单</entry>
+    <entry key="page.condition.filter">过滤器</entry>
+    <entry key="page.condition.option">选项</entry>
+    <entry key="login.logo">LightInTheBox</entry>
+    <entry key="login.submit">登录</entry>
+    <entry key="login.captcha">验证码</entry>
+
+    <entry key="privilege.username">用户名</entry>
+    <entry key="privilege.adduser">新增用户</entry>
+</properties>

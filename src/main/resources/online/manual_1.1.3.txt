@@ -1,0 +1,37 @@
+1.v3portal.properties 增加对npu的配置：
+测试环境
+path.npumsapi=http://npu.litb-test.com/npuapi.third
+path.mcapi=http://192.168.66.103:8090/MCAPI
+path.pcapi_3rd=http://pcdev.litb-test.com:8080/pcapi.3rdpp
+path.procurement_api=http://192.168.66.36:8080/procurement.api
+path.pc_products_api=http://pcdev.litb-test.com:8080/
+
+生产环境
+path.pcapi_3rd=http://pc.litb-inc.com:8080/pcapi.3rdpp
+path.procurement_api=http://v3.litb-inc.com:8080/v3center/procurement.api
+path.npumsapi=http://npu.litb-inc.com/npuapi.third
+path.mcapi=http://192.168.66.103:8082/MCAPI
+path.pcapi_products=http://pc.litb-inc.com:8080/products.api
+
+
+2.将src/resources/conf/menu.json 复制到 ~/v3/conf/
+
+
+3.在数据库products_center_v1的表vn_role_permission中插入有关第三方的menu
+insert into vn_role_permission (role_id,permission) values ('120','menu:merchantProduct:addNew');
+insert into vn_role_permission (role_id,permission) values ('120','menu:merchantProduct:listMerchantNewProducts');
+insert into vn_role_permission (role_id,permission) values ('120','menu:merchandise:listMerchandise');
+insert into vn_role_permission (role_id,permission) values ('120','menu:merchandise:listUpdateRequest');		
+insert into vn_role_permission (role_id,permission) values ('120','menu:supplier-portal:exportProcurementOrder');
+insert into vn_role_permission (role_id,permission) values ('120','menu:procurement-order:unreviewed');
+insert into vn_role_permission (role_id,permission) values ('120','menu:procurement-order:pendingShipment');
+insert into vn_role_permission (role_id,permission) values ('120','menu:procurement-order:procuring');
+insert into vn_role_permission (role_id,permission) values ('120','menu:procurement-order:outofstock');
+insert into vn_role_permission (role_id,permission) values ('120','menu:shipping-order');
+insert into vn_role_permission (role_id,permission) values ('120','menu:test:show_product_image.jsp?test=null');				
+insert into vn_role_permission (role_id,permission) values ('120','menu:supplier-portal:inStockOrderDetail');
+insert into vn_role_permission (role_id,permission) values ('120','menu:supplier-portal:refundOrderDetail');				
+insert into vn_role_permission (role_id,permission) values ('120','menu:setting:contact');
+insert into vn_role_permission (role_id,permission) values ('120','menu:setting:update-password');
+insert into vn_role_permission (role_id,permission) values ('120','menu:setting:custom-config');
+insert into vn_role_permission (role_id,permission) values ('120','menu:setting:track-categories');
